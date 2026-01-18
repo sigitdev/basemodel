@@ -9,6 +9,13 @@ build with PHP native
 - required TransModel.php to your controller
 
 ## VERSION ##
+### 2.00 ###
+- change namespace
+- add input request method
+- change variable config database
+- add api request curl 
+
+## VERSION ##
 ### 1.04 ###
 - add raw method for manual query
 - change default timestamp to false

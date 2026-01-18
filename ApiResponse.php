@@ -1,6 +1,5 @@
 <?php 
-
-namespace ApiResponse;
+namespace BaseModel;
 
 class ApiResponse {
     
