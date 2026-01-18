@@ -9,6 +9,10 @@ build with PHP native
 - required TransModel.php to your controller
 
 ## VERSION ##
+### 1.04 ###
+- add raw method for manual query
+- change default timestamp to false
+
 ### 1.03 ###
 - adding ApiResponse.php to response container
 - reformat code to oop
