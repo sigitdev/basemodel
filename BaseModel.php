@@ -1,10 +1,10 @@
 <?php 
 namespace BaseModel;
 
-require_once('Config.php');
-
-use Config\Config;
+use BaseModel\Config;
 use Exception;
+
+require_once('Config.php');
 
 class BaseModel extends Config{
 

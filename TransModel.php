@@ -1,10 +1,11 @@
 <?php 
-namespace TransModel;
 
-require_once('BaseModel.php');
+namespace BaseModel;
 
 use BaseModel\BaseModel;
 use Exception;
+
+require_once('BaseModel.php');
 
 class TransModel extends BaseModel{
 
@@ -55,6 +56,7 @@ class TransModel extends BaseModel{
     public function update($tableName = "", $arrData = [], $arrWhere = [], $who = "", $withTimestamp = false) : void {
         $conn   = $this->loadConnection();
         $sql    = $this->buildUpdateQuery($tableName, $arrData, $arrWhere, $who, $withTimestamp);
+        //die($sql);
         $data   = $conn->query($sql);
         if (!$data)
             throw new Exception("[TransModel] " .$tableName. ", " . $conn->error, 1);
@@ -69,6 +71,7 @@ class TransModel extends BaseModel{
     public function raw($sql = "") : array {
         $conn   = $this->loadConnection();
         $data   = $conn->query($sql);
+        //die($sql);
         if (!$data)
             throw new Exception("[TransModel] " . $conn->error, 1);
         $conn->close();
