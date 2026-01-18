@@ -1,1 +1,1 @@
-basemodel ver : 1.03
+basemodel ver : 1.04

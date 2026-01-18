@@ -17,7 +17,6 @@ class TransModel extends BaseModel{
      * $fields = [] : berarti menampilkan semua field, seperti : "SELECT * FROM".
      */
     public function select($tableName = "", $fields = [], $where = "") : array {
-        // include '../config.php';
         $conn   = $this->loadConnection();
         $sql    = $this->buildSelectQuery($tableName, $fields, $where);
         $data   = $conn->query($sql);
@@ -35,7 +34,7 @@ class TransModel extends BaseModel{
      * $withTimestamp = true, berarti mengisi secara otomatis created_at & updated_at, dan kolom wajib ada pada table
      * $withTimestamp = false, berarti tidak ada kolom created_at & updated_at, sehingga tidak otomatis diisikan 
      */
-    public function store($tableName = "", $arrData = [], $who = "", $withTimestamp = true) : void {
+    public function store($tableName = "", $arrData = [], $who = "", $withTimestamp = false) : void {
         $conn   = $this->loadConnection();
         $sql    = $this->buildInsertQuery($tableName, $arrData, $who, $withTimestamp);
         $data   = $conn->query($sql);
@@ -53,13 +52,27 @@ class TransModel extends BaseModel{
      * $withTimestamp = true, berarti mengisi secara otomatis created_at & updated_at, dan kolom wajib ada pada table
      * $withTimestamp = false, berarti tidak ada kolom created_at & updated_at, sehingga tidak otomatis diisikan 
      */
-    public function update($tableName = "", $arrData = [], $arrWhere = [], $who = "", $withTimestamp = true) : void {
+    public function update($tableName = "", $arrData = [], $arrWhere = [], $who = "", $withTimestamp = false) : void {
         $conn   = $this->loadConnection();
         $sql    = $this->buildUpdateQuery($tableName, $arrData, $arrWhere, $who, $withTimestamp);
         $data   = $conn->query($sql);
         if (!$data)
             throw new Exception("[TransModel] " .$tableName. ", " . $conn->error, 1);
         $conn->close();
+    }
+
+
+      /**
+     * function untuk query manual;
+     * $sql = isikan dengan query
+     */
+    public function raw($sql = "") : array {
+        $conn   = $this->loadConnection();
+        $data   = $conn->query($sql);
+        if (!$data)
+            throw new Exception("[TransModel] " . $conn->error, 1);
+        $conn->close();
+        return $this->arrayQueryMaping($data);
     }
 }
 
